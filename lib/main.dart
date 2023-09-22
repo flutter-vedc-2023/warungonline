@@ -1,7 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:gojek/controllers/login_controller.dart';
+import 'package:gojek/controllers/market_controller.dart';
 import 'package:gojek/pages/login_page.dart';
+import 'package:gojek/pages/market_page.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
-void main() {
+Future<void> main() async {
+  await Supabase.initialize(
+    url: 'https://brutxkeevcoapkuwynne.supabase.co',
+    anonKey:
+        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJydXR4a2VldmNvYXBrdXd5bm5lIiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTUxOTA0MzYsImV4cCI6MjAxMDc2NjQzNn0.IMyDQhbZvoND8JzjEyKZMF53Cvot8kFr2rzr49B6y4U',
+  );
+
   runApp(const MyApp());
 }
 
@@ -11,10 +22,22 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      title: 'Gojek',
+    Get.put(LoginController());
+    Get.put(MarketController());
+
+    return GetMaterialApp(
+      title: 'C-Teen',
       debugShowCheckedModeBanner: false,
-      home: LoginPage(),
+      getPages: [
+        GetPage(
+          name: '/',
+          page: () => const LoginPage(),
+        ),
+        GetPage(
+          name: '/market',
+          page: () => MarketPage(warung: Get.arguments),
+        ),
+      ],
     );
   }
 }

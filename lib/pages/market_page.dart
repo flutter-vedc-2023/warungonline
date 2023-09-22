@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:gojek/components/gopay.dart';
-import 'package:gojek/components/menus.dart';
-import 'package:gojek/components/news.dart';
-import 'package:gojek/theme.dart';
+import 'package:gojek/pages/order_page.dart';
 
 import '../components/market_item.dart';
 
@@ -82,6 +79,12 @@ class _MarketPageState extends State<MarketPage> {
             ),
           )
         ],
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () => Get.to(OrderPage(
+          title: widget.warung,
+        )),
+        child: const Icon(Icons.shopping_cart_outlined),
       ),
     );
   }

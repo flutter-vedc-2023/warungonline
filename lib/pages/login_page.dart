@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:gojek/controllers/login_controller.dart';
-import 'package:gojek/pages/home_page.dart';
 
 class LoginPage extends GetView<LoginController> {
   const LoginPage({super.key});

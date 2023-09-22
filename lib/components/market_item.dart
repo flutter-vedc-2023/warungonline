@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'counter_widget.dart';
+
 class MarketItem extends StatelessWidget {
   const MarketItem({
     super.key,
@@ -27,10 +29,10 @@ class MarketItem extends StatelessWidget {
               ),
             ),
           ),
-          SizedBox(
+          const SizedBox(
             width: 20,
           ),
-          Expanded(
+          const Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.start,
@@ -52,44 +54,7 @@ class MarketItem extends StatelessWidget {
                 SizedBox(
                   height: 20,
                 ),
-                Row(
-                  children: [
-                    InkWell(
-                      child: Container(
-                        height: 30,
-                        width: 30,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(5),
-                          color: Colors.grey.shade200,
-                        ),
-                        child: Icon(Icons.remove),
-                      ),
-                    ),
-                    SizedBox(
-                      width: 40,
-                      child: Center(
-                        child: Text(
-                          "1",
-                          style: TextStyle(
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ),
-                    ),
-                    InkWell(
-                      child: Container(
-                        height: 30,
-                        width: 30,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(5),
-                          color: Colors.grey.shade200,
-                        ),
-                        child: Icon(Icons.add),
-                      ),
-                    )
-                  ],
-                )
+                CounterWidget()
               ],
             ),
           )

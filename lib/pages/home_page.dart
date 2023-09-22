@@ -18,10 +18,10 @@ class HomePage extends StatelessWidget {
           elevation: 0,
           toolbarHeight: 71,
           title: const Header()),
-      body: SingleChildScrollView(
+      body: const SingleChildScrollView(
           child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-        children: const [Gopay(), Menus(), News()],
+        children: [Gopay(), Menus(), News()],
       )),
     );
   }

@@ -3,7 +3,9 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:gojek/controllers/login_controller.dart';
 import 'package:gojek/controllers/market_controller.dart';
+import 'package:gojek/pages/home_page.dart';
 import 'package:gojek/pages/login_page.dart';
+import 'package:gojek/storage/user_login_local.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import 'pages/market_page.dart';
@@ -27,13 +29,20 @@ class MyApp extends StatelessWidget {
     Get.put(LoginController());
     Get.put(MarketController());
 
+    final UserLoginLocal local = UserLoginLocal();
+
     return GetMaterialApp(
       title: 'C-Teen',
       debugShowCheckedModeBanner: false,
+      initialRoute: local.isUserLogin()? '/home' : '/',
       getPages: [
         GetPage(
           name: '/',
           page: () => const LoginPage(),
+        ),
+        GetPage(
+          name: '/home',
+          page: () => const HomePage(),
         ),
         GetPage(
           name: '/market',

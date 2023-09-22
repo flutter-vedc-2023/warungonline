@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:gojek/storage/user_login_local.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 class LoginController extends GetxController {
   final TextEditingController ctrlNisn = TextEditingController();
   final TextEditingController ctrlPassword = TextEditingController();
+  final UserLoginLocal local = UserLoginLocal();
 
   final isLoading = false.obs;
   final key = GlobalKey<FormState>();
@@ -12,12 +14,12 @@ class LoginController extends GetxController {
 
   Future<void> login() async {
     isLoading.value = true;
-    final user = await supabase
+    final List<dynamic> user = await supabase
         .from("users")
         .select()
         .filter("nisn", "eq", ctrlNisn.text)
         .filter("password", "eq", ctrlPassword.text);
-    if (user is List && user.isEmpty) {
+    if (user.isEmpty) {
       ScaffoldMessenger.of(Get.context!).showSnackBar(
         const SnackBar(
           content: Text("Gagal Login"),
@@ -25,7 +27,8 @@ class LoginController extends GetxController {
         ),
       );
     } else {
-      Get.offNamed("/market");
+      await local.saveUserLogin(user[0]!);
+      Get.offNamed("/home");
     }
     isLoading.value = false;
   }

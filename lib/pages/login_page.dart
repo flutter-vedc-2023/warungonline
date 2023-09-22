@@ -39,7 +39,7 @@ class LoginPage extends GetView<LoginController> {
                             }
                             return null;
                           },
-                          controller: TextEditingController(),
+                          controller: controller.ctrlNisn,
                           decoration: InputDecoration(
                             fillColor: Colors.grey.shade100,
                             border: InputBorder.none,
@@ -63,7 +63,7 @@ class LoginPage extends GetView<LoginController> {
                             }
                             return null;
                           },
-                          controller: TextEditingController(),
+                          controller: controller.ctrlPassword,
                           decoration: InputDecoration(
                             fillColor: Colors.grey.shade100,
                             border: InputBorder.none,
@@ -85,8 +85,7 @@ class LoginPage extends GetView<LoginController> {
                           height: 42.0,
                           onPressed: () {
                             if (controller.key.currentState!.validate()) {
-                              Navigator.of(context).push(MaterialPageRoute(
-                                  builder: (builder) => const HomePage()));
+                              controller.login();
                             }
                           },
                           color: Colors.lightBlueAccent,

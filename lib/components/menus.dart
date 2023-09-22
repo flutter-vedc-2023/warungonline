@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:gojek/datas/icons.dart';
+import 'package:gojek/pages/market_page.dart';
 import 'package:gojek/theme.dart';
 
 class Menus extends StatelessWidget {
@@ -15,28 +16,34 @@ class Menus extends StatelessWidget {
         child:
             GridView.count(crossAxisCount: 3, mainAxisSpacing: 40, children: [
           ...menuIcons.map(
-            (icon) => Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Center(
-                  child: SvgPicture.asset(
-                    'assets/icons/${icon.icon}.svg',
-                    width: 70,
-                    height: 70,
+            (icon) => InkWell(
+              onTap: () {
+                Navigator.of(context).push(MaterialPageRoute(
+                    builder: (builder) => MarketPage(warung: icon.title)));
+              },
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Center(
+                    child: SvgPicture.asset(
+                      'assets/icons/${icon.icon}.svg',
+                      width: 70,
+                      height: 70,
+                    ),
                   ),
-                ),
-                const SizedBox(
-                  height: 15,
-                ),
-                Center(
-                  child: Text(
-                    icon.title,
-                    style: regular12_5.copyWith(color: dark2),
-                    textAlign: TextAlign.center,
+                  const SizedBox(
+                    height: 15,
                   ),
-                ),
-              ],
+                  Center(
+                    child: Text(
+                      icon.title,
+                      style: regular12_5.copyWith(color: dark2),
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
+                ],
+              ),
             ),
           )
         ]),

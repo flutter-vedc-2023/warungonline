@@ -13,6 +13,7 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
+          automaticallyImplyLeading: false,
           backgroundColor: green2,
           elevation: 0,
           toolbarHeight: 71,

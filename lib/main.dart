@@ -4,10 +4,16 @@ import 'package:get_storage/get_storage.dart';
 import 'package:gojek/controllers/login_controller.dart';
 import 'package:gojek/controllers/market_controller.dart';
 import 'package:gojek/pages/login_page.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
 import 'pages/market_page.dart';
 
 Future<void> main() async {
+  await Supabase.initialize(
+    url: 'https://brutxkeevcoapkuwynne.supabase.co',
+    anonKey:
+        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJydXR4a2VldmNvYXBrdXd5bm5lIiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTUxOTA0MzYsImV4cCI6MjAxMDc2NjQzNn0.IMyDQhbZvoND8JzjEyKZMF53Cvot8kFr2rzr49B6y4U',
+  );
   await GetStorage.init();
   runApp(const MyApp());
 }
